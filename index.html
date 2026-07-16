@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="ACC Solutions builds fast, responsive websites for small businesses, contractors, restaurants, barbers, property managers, and local service companies."
+      content="ACC Solutions builds premium, responsive websites for local businesses that need to look sharp, load fast, and earn trust online."
     />
-    <title>ACC Solutions | Modern Websites for Small Businesses</title>
+    <title>ACC Solutions | Premium Websites for Small Businesses</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -20,8 +20,8 @@
     <header class="site-header" id="top">
       <nav class="nav container" aria-label="Main navigation">
         <a class="logo" href="#top" aria-label="ACC Solutions home">
-          <span class="logo-mark">ACC</span>
-          <span>Solutions</span>
+          <span class="logo-mark">A</span>
+          <span class="logo-text">ACC Solutions</span>
         </a>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
@@ -31,99 +31,173 @@
           <span></span>
         </button>
 
-        <ul class="nav-menu" id="nav-menu">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#portfolio">Work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-panel" id="nav-menu">
+          <ul class="nav-menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#about">Studio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <a class="nav-cta" href="#contact">Start a Project</a>
+        </div>
       </nav>
     </header>
 
     <main>
-      <section class="hero section">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="container hero-grid">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-atmosphere" aria-hidden="true">
+          <span class="hero-plane hero-plane-one"></span>
+          <span class="hero-plane hero-plane-two"></span>
+          <span class="hero-scanline"></span>
+        </div>
+
+        <div class="container hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">ACC Solutions · accsolutions.dev</p>
-            <h1>Modern Websites for Small Businesses</h1>
-            <p class="hero-text">
-              ACC Solutions builds fast, responsive websites for local businesses that need a
-              professional online presence without the clutter or confusion.
+            <p class="eyebrow reveal">ACC Solutions / accsolutions.dev</p>
+            <h1 id="hero-title" class="reveal">Modern Websites for Small Businesses</h1>
+            <p class="hero-text reveal">
+              We design and build fast, responsive websites that help local businesses look
+              established, earn trust quickly, and turn visitors into real leads.
             </p>
-            <div class="hero-actions" aria-label="Primary actions">
-              <a class="btn btn-primary" href="#portfolio">View Work</a>
-              <a class="btn btn-secondary" href="#contact">Start a Project</a>
+            <div class="hero-actions reveal" aria-label="Primary actions">
+              <a class="btn btn-primary" href="#portfolio">
+                <span>View Work</span>
+                <span aria-hidden="true">+</span>
+              </a>
+              <a class="btn btn-secondary" href="#contact">
+                <span>Start a Project</span>
+              </a>
             </div>
           </div>
 
-          <div class="hero-panel reveal">
-            <div class="browser-bar">
-              <span></span>
-              <span></span>
-              <span></span>
+          <aside class="hero-showcase reveal" aria-label="ACC Solutions website preview">
+            <div class="showcase-topline">
+              <span>Studio preview</span>
+              <span>Live concept</span>
             </div>
-            <div class="preview-card">
-              <p>Local business website</p>
-              <h2>Fast. Clean. Mobile-ready.</h2>
-              <div class="preview-lines">
+            <div class="showcase-window">
+              <div class="window-chrome" aria-hidden="true">
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
+              <div class="site-mockup">
+                <div class="mockup-nav"></div>
+                <div class="mockup-hero">
+                  <span></span>
+                  <strong></strong>
+                  <em></em>
+                </div>
+                <div class="mockup-grid">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
             </div>
-            <div class="metric-row">
+            <div class="hero-proof">
               <div>
                 <strong>Mobile-first</strong>
-                <span>Responsive layouts</span>
+                <span>Designed for the way customers browse now.</span>
               </div>
               <div>
                 <strong>Launch-ready</strong>
-                <span>Clean starter code</span>
+                <span>Clean static builds that can grow later.</span>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section class="section" id="services">
+      <section class="section services-section" id="services">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Services</p>
-            <h2>Websites that make local companies look ready for the next customer.</h2>
+            <h2>Premium web foundations for local brands that want to look serious.</h2>
+            <p>
+              Every service is built around clarity, speed, mobile polish, and the details that
+              make a small business feel established online.
+            </p>
           </div>
 
-          <div class="card-grid services-grid">
-            <article class="card reveal">
-              <span class="card-icon">01</span>
-              <h3>Website Design</h3>
-              <p>Clean layouts, sharp typography, and clear calls to action built around your brand.</p>
+          <div class="services-grid reveal-group">
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M7 9h18v14H7z" />
+                  <path d="M11 13h10M11 17h6" />
+                </svg>
+              </span>
+              <div>
+                <h3>Website Design</h3>
+                <p>Custom layouts, strong hierarchy, and polished visual direction shaped around your business.</p>
+              </div>
             </article>
-            <article class="card reveal">
-              <span class="card-icon">02</span>
-              <h3>Website Redesign</h3>
-              <p>Refresh outdated pages with a modern structure, stronger visuals, and better flow.</p>
+
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M8 22h16" />
+                  <path d="M10 20l8-8 4 4-8 8H10z" />
+                </svg>
+              </span>
+              <div>
+                <h3>Website Redesign</h3>
+                <p>Turn an outdated site into a sharper, faster experience that feels current and credible.</p>
+              </div>
             </article>
-            <article class="card reveal">
-              <span class="card-icon">03</span>
-              <h3>Responsive Development</h3>
-              <p>Mobile-first builds that look polished on phones, tablets, laptops, and desktops.</p>
+
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M10 6h12v20H10z" />
+                  <path d="M14 10h4M15 22h2" />
+                </svg>
+              </span>
+              <div>
+                <h3>Responsive Development</h3>
+                <p>Mobile-first HTML, CSS, and JavaScript that hold up across phones, tablets, and desktops.</p>
+              </div>
             </article>
-            <article class="card reveal">
-              <span class="card-icon">04</span>
-              <h3>Landing Pages</h3>
-              <p>Focused pages for promotions, service offers, lead capture, and quick launches.</p>
+
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M7 8h18v16H7z" />
+                  <path d="M11 19h7M11 13h10" />
+                </svg>
+              </span>
+              <div>
+                <h3>Landing Pages</h3>
+                <p>Focused pages for offers, campaigns, booking funnels, and service launches.</p>
+              </div>
             </article>
-            <article class="card reveal">
-              <span class="card-icon">05</span>
-              <h3>Website Maintenance</h3>
-              <p>Simple updates, content changes, performance checks, and ongoing support.</p>
+
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M9 17a7 7 0 1 0 2-5" />
+                  <path d="M9 8v6h6" />
+                </svg>
+              </span>
+              <div>
+                <h3>Website Maintenance</h3>
+                <p>Updates, refinements, performance checks, and support as your business changes.</p>
+              </div>
             </article>
-            <article class="card reveal">
-              <span class="card-icon">06</span>
-              <h3>Portfolio / Business Branding</h3>
-              <p>Starter identity direction, service pages, project showcases, and business profiles.</p>
+
+            <article class="service-card reveal">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32">
+                  <path d="M8 24V8h16v16" />
+                  <path d="M12 19l3-4 3 3 2-2 4 5" />
+                </svg>
+              </span>
+              <div>
+                <h3>Portfolio / Business Branding</h3>
+                <p>Sharper business profiles, service storytelling, visual systems, and project showcases.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -133,73 +207,116 @@
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Process</p>
-            <h2>A straightforward path from idea to launch.</h2>
+            <h2>A disciplined path from first conversation to polished launch.</h2>
           </div>
 
-          <div class="process-list">
+          <div class="process-list reveal-group">
             <article class="process-step reveal">
               <span>01</span>
               <h3>Discover</h3>
-              <p>Clarify goals, services, audience, and what the website needs to accomplish.</p>
+              <p>Define goals, audience, services, priorities, and the website's job.</p>
             </article>
             <article class="process-step reveal">
               <span>02</span>
               <h3>Design</h3>
-              <p>Shape the layout, style, content structure, and mobile experience.</p>
+              <p>Establish structure, visual direction, content flow, and mobile behavior.</p>
             </article>
             <article class="process-step reveal">
               <span>03</span>
               <h3>Build</h3>
-              <p>Turn the design into clean, responsive HTML, CSS, and JavaScript.</p>
+              <p>Develop the site with clean front-end code and performance in mind.</p>
             </article>
             <article class="process-step reveal">
               <span>04</span>
               <h3>Launch</h3>
-              <p>Prepare the site for deployment with final polish and quality checks.</p>
+              <p>Review, polish, connect essentials, and prepare the site for the public.</p>
             </article>
             <article class="process-step reveal">
               <span>05</span>
               <h3>Support</h3>
-              <p>Keep the website updated as the business grows and changes.</p>
+              <p>Refine the website as your offers, proof, and business needs evolve.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="portfolio">
+      <section class="section portfolio-section" id="portfolio">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">Portfolio</p>
-            <h2>Starter project slots ready for real client work.</h2>
+            <h2>Real project previews built to show polish, clarity, and business-ready design.</h2>
           </div>
 
-          <div class="portfolio-grid">
-            <article class="project-card reveal">
-              <div class="project-visual landscaping"></div>
-              <div class="project-content">
-                <p>Local service demo</p>
+          <div class="portfolio-grid reveal-group">
+            <article class="project-card project-featured reveal">
+              <div class="project-visual">
+                <img
+                  src="images/portfolio1.png"
+                  alt="Southern Edge Landscaping website screenshot"
+                  loading="lazy"
+                  width="3420"
+                  height="2224"
+                />
+              </div>
+              <div class="project-overlay">
+                <span>Small Business Website</span>
                 <h3>Southern Edge Landscaping</h3>
+                <p>Local service website system with premium visuals and lead-focused service pages.</p>
+                <a href="#contact">View Details</a>
               </div>
             </article>
+
             <article class="project-card reveal">
-              <div class="project-visual barber"></div>
-              <div class="project-content">
-                <p>Booking-ready concept</p>
+              <div class="project-visual">
+                <img
+                  src="images/portfolio2.png"
+                  alt="Modern barber website screenshot"
+                  loading="lazy"
+                  width="3420"
+                  height="2224"
+                />
+              </div>
+              <div class="project-overlay">
+                <span>Booking-Ready Concept</span>
                 <h3>Barber Website</h3>
+                <p>Booking-ready web presence for a modern local shop.</p>
+                <a href="#contact">View Details</a>
               </div>
             </article>
+
             <article class="project-card reveal">
-              <div class="project-visual weather"></div>
-              <div class="project-content">
-                <p>Front-end app demo</p>
+              <div class="project-visual">
+                <img
+                  src="images/portfolio3.png"
+                  alt="Weather app interface screenshot"
+                  loading="lazy"
+                  width="3420"
+                  height="2224"
+                />
+              </div>
+              <div class="project-overlay">
+                <span>Front-End App</span>
                 <h3>Weather App</h3>
+                <p>Front-end app concept showing interface polish and logic.</p>
+                <a href="#contact">View Details</a>
               </div>
             </article>
+
             <article class="project-card reveal">
-              <div class="project-visual real-estate"></div>
-              <div class="project-content">
-                <p>Property showcase</p>
+              <div class="project-visual">
+                <img
+                  src="images/portfolio4.png"
+                  alt="Real estate demo website screenshot"
+                  loading="lazy"
+                  width="3420"
+                  height="2224"
+                />
+              </div>
+              <div class="project-overlay">
+                <span>Property Showcase</span>
                 <h3>Real Estate Demo</h3>
+                <p>Property showcase concept for listings and local trust.</p>
+                <a href="#contact">View Details</a>
               </div>
             </article>
           </div>
@@ -209,19 +326,24 @@
       <section class="section about-section" id="about">
         <div class="container about-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">About ACC Solutions</p>
-            <h2>Modern web development for businesses that need to be found, trusted, and contacted.</h2>
+            <p class="eyebrow">Studio</p>
+            <h2>ACC Solutions exists for businesses that are excellent offline and need the web to reflect it.</h2>
           </div>
           <div class="about-copy reveal">
             <p>
-              ACC Solutions is a modern web development studio focused on clean design,
-              mobile-first layouts, and helping small businesses look professional online.
+              We focus on clean design, mobile-first layouts, and front-end builds that make small
+              businesses look professional from the first click.
             </p>
             <p>
-              From contractors and barbers to restaurants, property managers, and local service
-              companies, the goal is simple: build websites that feel credible, load quickly, and
-              make it easy for customers to take the next step.
+              Contractors, barbers, restaurants, property managers, and local service companies
+              need websites that load quickly, explain value clearly, and make contacting the
+              business feel effortless.
             </p>
+            <div class="about-points">
+              <span>Sharp visual systems</span>
+              <span>Clear conversion paths</span>
+              <span>Room to grow</span>
+            </div>
           </div>
         </div>
       </section>
@@ -230,27 +352,89 @@
         <div class="container contact-grid">
           <div class="contact-copy reveal">
             <p class="eyebrow">Start a Project</p>
-            <h2>Tell ACC Solutions what you are building next.</h2>
+            <h2>Request a quote from ACC Solutions.</h2>
             <p>
-              Share a few details about your business, your goals, and the kind of website you
-              need. ACC Solutions will use that to shape a clear next step.
+              Send the essentials now. The form opens a prefilled email so a real project request
+              can reach ACC Solutions today.
             </p>
+            <div class="contact-methods" aria-label="Direct contact options">
+              <a href="mailto:contact@accsolutions.dev">contact@accsolutions.dev</a>
+              <a href="https://accsolutions.dev">accsolutions.dev</a>
+            </div>
           </div>
 
-          <form class="contact-form reveal" aria-label="Project contact form">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" />
+          <form class="contact-form reveal" id="quote-form" aria-label="Quote request form" novalidate>
+            <div class="form-header">
+              <span>Quote Request</span>
+              <p>Required fields are marked with *</p>
+            </div>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" />
+            <div class="field two-column">
+              <label for="name">Name *</label>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+            </div>
 
-            <label for="business">Business Name</label>
-            <input id="business" name="business" type="text" placeholder="Your business" />
+            <div class="field two-column">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project"></textarea>
+            <div class="field">
+              <label for="business">Business Name *</label>
+              <input id="business" name="business" type="text" placeholder="Your business" autocomplete="organization" required />
+            </div>
 
-            <button class="btn btn-primary" type="button">Send Message</button>
+            <div class="field">
+              <label for="service">What do you need? *</label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="New website">New website</option>
+                <option value="Website redesign">Website redesign</option>
+                <option value="Landing page">Landing page</option>
+                <option value="Maintenance / updates">Maintenance / updates</option>
+                <option value="Branding / portfolio">Branding / portfolio</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="budget">Estimated Budget</label>
+              <select id="budget" name="budget">
+                <option value="Not selected">Select a range</option>
+                <option value="Under $1,000">Under $1,000</option>
+                <option value="$1,000 - $2,500">$1,000 - $2,500</option>
+                <option value="$2,500 - $5,000">$2,500 - $5,000</option>
+                <option value="$5,000+">$5,000+</option>
+                <option value="Need guidance">Need guidance</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="timeline">Ideal Timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="Not selected">Select a timeline</option>
+                <option value="ASAP">ASAP</option>
+                <option value="2-4 weeks">2-4 weeks</option>
+                <option value="1-2 months">1-2 months</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your business, goals, current website, and what success looks like." required></textarea>
+            </div>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+            <button class="btn btn-primary" type="submit">
+              <span>Prepare Quote Email</span>
+              <span aria-hidden="true">+</span>
+            </button>
+
+            <p class="form-note">
+              This opens your email app with the request prepared for ACC Solutions.
+            </p>
           </form>
         </div>
       </section>
@@ -260,12 +444,15 @@
       <div class="container footer-grid">
         <div>
           <a class="logo footer-logo" href="#top">
-            <span class="logo-mark">ACC</span>
-            <span>Solutions</span>
+            <span class="logo-mark">A</span>
+            <span class="logo-text">ACC Solutions</span>
           </a>
           <p>Built for small businesses. Designed for growth.</p>
         </div>
-        <a href="https://accsolutions.dev">accsolutions.dev</a>
+        <div class="footer-links">
+          <a href="mailto:contact@accsolutions.dev">contact@accsolutions.dev</a>
+          <a href="https://accsolutions.dev">accsolutions.dev</a>
+        </div>
       </div>
     </footer>
 
