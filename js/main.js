@@ -7,7 +7,7 @@ const revealElements = document.querySelectorAll(".reveal");
 const revealGroups = document.querySelectorAll(".reveal-group");
 const quoteForm = document.querySelector("#quote-form");
 const formStatus = document.querySelector("#form-status");
-const businessEmail = "contact@accsolutions.dev";
+const businessEmail = "nickboyce.tech@icloud.com";
 let ticking = false;
 
 function setHeaderState() {

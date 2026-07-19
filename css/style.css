@@ -950,6 +950,28 @@ h3 {
   margin-top: 34px;
 }
 
+.contact-method {
+  display: grid;
+  gap: 4px;
+  width: fit-content;
+  min-width: min(100%, 320px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+}
+
+.contact-method span {
+  color: var(--faint);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .contact-methods a,
 .footer-links a {
   color: var(--text);
