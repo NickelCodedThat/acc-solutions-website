@@ -895,6 +895,82 @@ h3 {
   color: var(--accent);
 }
 
+.live-work {
+  width: min(100%, 960px);
+  margin: clamp(58px, 7vw, 86px) auto 0;
+}
+
+.live-work-heading {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.live-work-heading h3 {
+  margin: 0;
+  font-family: "Sora", "Inter", sans-serif;
+  font-size: clamp(1.65rem, 3.6vw, 2.55rem);
+  line-height: 1.08;
+}
+
+.live-work-heading p {
+  max-width: 620px;
+  margin: 12px auto 0;
+  color: var(--muted);
+}
+
+.live-work-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.live-work-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(20px, 3vw, 28px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.032)),
+    rgba(10, 10, 10, 0.74);
+  box-shadow:
+    0 26px 76px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.live-work-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-line);
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(212, 175, 55, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.live-work-card p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.live-work-card h4 {
+  margin: 0;
+  font-family: "Sora", "Inter", sans-serif;
+  font-size: clamp(1.12rem, 2.4vw, 1.55rem);
+  line-height: 1.2;
+}
+
+.live-work-link {
+  flex: 0 0 auto;
+  min-width: 166px;
+}
+
 .about-section {
   border-block: 1px solid var(--line);
   background:
@@ -1369,6 +1445,17 @@ h3 {
 
   .work-showcase-frame {
     padding: 8px;
+  }
+
+  .live-work-card {
+    display: grid;
+    align-items: start;
+  }
+
+  .live-work-link {
+    display: flex;
+    width: 100%;
+    justify-self: stretch;
   }
 
   .form-header {
