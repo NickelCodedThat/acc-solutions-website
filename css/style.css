@@ -564,75 +564,118 @@ h3 {
   padding: clamp(20px, 4vw, 34px);
 }
 
-.mockup-nav,
-.mockup-hero,
-.mockup-grid span {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(22, 30, 41, 0.72);
-}
-
-.mockup-nav {
-  width: 100%;
-  height: 44px;
-}
-
-.mockup-hero {
-  display: grid;
-  align-content: end;
-  gap: 14px;
-  min-height: 210px;
-  padding: 22px;
-  background:
-    linear-gradient(135deg, rgba(var(--accent-rgb), 0.22), transparent 60%),
-    rgba(22, 30, 41, 0.72);
-}
-
-.mockup-hero span,
-.mockup-hero strong,
-.mockup-hero em,
-.mockup-grid span::before {
+.project-preview {
   display: block;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
+  overflow: hidden;
 }
 
-.mockup-hero span {
-  width: 74px;
-  height: 8px;
-  opacity: 0.62;
-}
-
-.mockup-hero strong {
-  width: min(92%, 360px);
-  height: 22px;
-}
-
-.mockup-hero em {
-  width: min(64%, 260px);
-  height: 10px;
-  opacity: 0.45;
-}
-
-.mockup-grid {
+.preview-project {
+  position: absolute;
+  inset: clamp(16px, 3vw, 26px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 16px;
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+  text-decoration: none;
+  transform: translateY(10px);
+  transition:
+    opacity 650ms ease,
+    transform 650ms ease;
 }
 
-.mockup-grid span {
+.preview-project.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.preview-project-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+.preview-image-wrap {
   position: relative;
-  min-height: 86px;
+  display: grid;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 8px);
+  background:
+    radial-gradient(circle at 22% 12%, rgba(var(--accent-rgb), 0.18), transparent 36%),
+    rgba(22, 30, 41, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 22px 60px rgba(0, 0, 0, 0.24);
 }
 
-.mockup-grid span::before {
-  content: "";
+.preview-image-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.preview-copy {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 10px);
+  padding: 16px;
+  background: rgba(17, 23, 32, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.preview-kicker,
+.preview-status,
+.preview-link {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.preview-copy h3 {
+  margin-top: 7px;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  line-height: 1.05;
+}
+
+.preview-status {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.preview-link {
   position: absolute;
   right: 16px;
-  bottom: 16px;
-  left: 16px;
-  height: 8px;
-  opacity: 0.35;
+  top: 16px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 8px 10px;
+  color: var(--text);
+  background: rgba(11, 15, 20, 0.72);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.preview-project-link:hover .preview-link,
+.preview-project-link:focus-visible .preview-link {
+  border-color: rgba(var(--accent-rgb), 0.7);
+  background: rgba(var(--accent-rgb), 0.2);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-proof {
@@ -1700,21 +1743,20 @@ h3 {
     gap: 12px;
   }
 
-  .mockup-hero {
-    min-height: 128px;
-    padding: 18px;
+  .preview-project {
+    inset: 14px;
+    gap: 12px;
   }
 
-  .mockup-nav {
-    height: 34px;
+  .preview-copy {
+    gap: 10px;
+    padding: 10px;
   }
 
-  .mockup-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .mockup-grid span {
-    min-height: 62px;
+  .preview-kicker,
+  .preview-status,
+  .preview-link {
+    font-size: 0.62rem;
   }
 
   .hero-proof {
@@ -1789,6 +1831,15 @@ h3 {
   .site-mockup {
     min-height: 230px;
     padding: 16px;
+  }
+
+  .preview-project {
+    inset: 12px;
+  }
+
+  .preview-copy h3 {
+    margin-top: 4px;
+    font-size: 0.95rem;
   }
 
   .work-categories {

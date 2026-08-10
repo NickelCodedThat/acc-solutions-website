@@ -7,6 +7,7 @@ const revealElements = document.querySelectorAll(".reveal");
 const revealGroups = document.querySelectorAll(".reveal-group");
 const quoteForm = document.querySelector("#quote-form");
 const formStatus = document.querySelector("#form-status");
+const heroPreview = document.querySelector("[data-hero-preview]");
 const businessEmail = "nickboyce.tech@icloud.com";
 let ticking = false;
 
@@ -159,6 +160,68 @@ if (quoteForm) {
     }
   });
 }
+
+function initHeroPreview() {
+  if (!heroPreview) {
+    return;
+  }
+
+  const slides = [...heroPreview.querySelectorAll("[data-hero-slide]")];
+
+  if (slides.length <= 1) {
+    return;
+  }
+
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let activeIndex = 0;
+  let rotation;
+
+  function setSlide(nextIndex) {
+    activeIndex = nextIndex;
+
+    slides.forEach((slide, index) => {
+      const isActive = index === activeIndex;
+
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+
+      if (slide.matches("a")) {
+        slide.tabIndex = isActive ? 0 : -1;
+      }
+    });
+  }
+
+  function stopRotation() {
+    window.clearInterval(rotation);
+  }
+
+  function startRotation() {
+    stopRotation();
+
+    if (motionQuery.matches) {
+      return;
+    }
+
+    rotation = window.setInterval(() => {
+      setSlide((activeIndex + 1) % slides.length);
+    }, 5000);
+  }
+
+  setSlide(0);
+  startRotation();
+
+  heroPreview.addEventListener("pointerenter", stopRotation);
+  heroPreview.addEventListener("pointerleave", startRotation);
+  heroPreview.addEventListener("focusin", stopRotation);
+  heroPreview.addEventListener("focusout", startRotation);
+
+  motionQuery.addEventListener("change", () => {
+    setSlide(0);
+    startRotation();
+  });
+}
+
+initHeroPreview();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
