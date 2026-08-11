@@ -98,18 +98,18 @@ function validateQuoteForm() {
 }
 
 function buildQuoteEmail() {
-  const subject = `Quote Request - ${getFieldValue("business") || "ACC Solutions Website Project"}`;
+  const subject = `ACC Solutions Inquiry - ${getFieldValue("business") || "Business Improvement Project"}`;
   const bodyLines = [
-    "New quote request from accsolutions.dev",
+    "New business improvement inquiry from accsolutions.dev",
     "",
     `Name: ${getFieldValue("name")}`,
     `Email: ${getFieldValue("email")}`,
     `Business: ${getFieldValue("business")}`,
-    `Service Needed: ${getFieldValue("service")}`,
+    `Primary Need: ${getFieldValue("service")}`,
     `Estimated Budget: ${getFieldValue("budget") || "Not selected"}`,
     `Ideal Timeline: ${getFieldValue("timeline") || "Not selected"}`,
     "",
-    "Project Details:",
+    "Business Context:",
     getFieldValue("message"),
   ];
 
@@ -129,7 +129,7 @@ if (quoteForm) {
       return;
     }
 
-    formStatus.textContent = "Opening your email app with the quote request prepared.";
+    formStatus.textContent = "Opening your email app with the inquiry prepared.";
     formStatus.classList.remove("is-error");
     window.location.href = buildQuoteEmail();
   });
