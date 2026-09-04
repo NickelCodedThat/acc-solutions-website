@@ -1,0 +1,21 @@
+---
+interface Props {
+  label: string;
+  nodes: readonly string[];
+  compact?: boolean;
+}
+
+const { label, nodes, compact = false } = Astro.props;
+---
+
+<div class:list={["system-diagram", { "system-diagram-compact": compact }]} role="img" aria-label={`${label}: ${nodes.join(" to ")}`}>
+  <p>{label}</p>
+  <div class="system-diagram-flow">
+    {nodes.map((node, index) => (
+      <span>
+        <small>{String(index + 1).padStart(2, "0")}</small>
+        {node}
+      </span>
+    ))}
+  </div>
+</div>

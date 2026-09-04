@@ -17,9 +17,9 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "Systems", href: "#systems" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Systems", href: "/work#systems" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ] as const;

@@ -1,0 +1,89 @@
+---
+import SiteLayout from "@layouts/SiteLayout.astro";
+import PageHeader from "@components/ui/PageHeader.astro";
+import WorkProjectCard from "@components/work/WorkProjectCard.astro";
+import { systemCases, clientCases } from "@data/caseStudies";
+import { site } from "@data/site";
+import "@styles/pages.css";
+
+const canonical = new URL("/work", site.url).toString();
+const description =
+  "Explore ACC Solutions systems, products, and client work, including operations software, data applications, mobile products, and production business websites.";
+const pageSchema = {
+  "@type": "CollectionPage",
+  "@id": `${canonical}#collection`,
+  url: canonical,
+  name: "Work and Case Studies | ACC Solutions",
+  description,
+  about: { "@id": `${site.url}#organization` },
+  hasPart: [...systemCases, ...clientCases].map((study) => ({
+    "@type": "CreativeWork",
+    name: study.name,
+    url: new URL(`/work/${study.slug}`, site.url).toString(),
+  })),
+};
+---
+
+<SiteLayout
+  title="Work & Case Studies | ACC Solutions"
+  description={description}
+  canonical={canonical}
+  ogImage="/images/WorkDisplay.png"
+  ogImageAlt="Composite showcase of ACC Solutions websites and applications"
+  structuredData={pageSchema}
+>
+  <PageHeader
+    eyebrow="Work / Case Studies"
+    title="Real systems. Real implementation. Clear business purpose."
+    copy="ACC work spans internal operations software, external-data applications, native mobile products, and customer-facing business websites. Every case is presented according to its verified current state."
+    context="No invented metrics. No borrowed mockups. The proof comes from the repositories, working builds, production sites, and decisions behind the implementation."
+  />
+
+  <nav class="work-index-nav" aria-label="Work categories">
+    <div class="container">
+      <a href="#systems"><span>01</span> Systems & Products</a>
+      <a href="#client-work"><span>02</span> Client Work</a>
+    </div>
+  </nav>
+
+  <section class="work-index-section systems-index" id="systems" aria-labelledby="systems-index-title">
+    <div class="container">
+      <div class="work-index-heading reveal">
+        <div>
+          <p class="page-eyebrow">01 / Systems & Products</p>
+          <h2 id="systems-index-title">Technology built around difficult operating and data problems.</h2>
+        </div>
+        <p>Products in active development and current builds that demonstrate how ACC reasons across interface, workflow, data, persistence, and infrastructure.</p>
+      </div>
+
+      <div class="systems-work-list reveal-group">
+        {systemCases.map((study, index) => <WorkProjectCard study={study} priority={index === 0 ? "primary" : "standard"} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="work-index-section client-index" id="client-work" aria-labelledby="client-index-title">
+    <div class="container">
+      <div class="work-index-heading reveal">
+        <div>
+          <p class="page-eyebrow">02 / Client Work</p>
+          <h2 id="client-index-title">Public-facing experiences designed around customer decisions.</h2>
+        </div>
+        <p>Production websites and client projects focused on positioning, service clarity, responsive behavior, credibility, and the path from interest to inquiry.</p>
+      </div>
+
+      <div class="client-work-list reveal-group">
+        {clientCases.map((study) => <WorkProjectCard study={study} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-inquiry" aria-labelledby="work-inquiry-title">
+    <div class="container page-inquiry-grid reveal">
+      <p class="page-eyebrow">Build the next system</p>
+      <h2 id="work-inquiry-title">What is creating friction inside your business?</h2>
+      <p>Bring ACC the workflow, customer experience, or data problem. We will help determine the right technical response.</p>
+      <a class="btn btn-primary" href="/#contact">Talk With ACC</a>
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,224 @@
+---
+import SiteLayout from "@layouts/SiteLayout.astro";
+import StatusBadge from "@components/ui/StatusBadge.astro";
+import SystemDiagram from "@components/ui/SystemDiagram.astro";
+import { getCaseStudy, type CaseStudy } from "@data/caseStudies";
+import { site } from "@data/site";
+import "@styles/pages.css";
+import "@styles/case-study.css";
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+const canonical = new URL(`/work/${study.slug}`, site.url).toString();
+const heroMedia = study.media[0];
+const relatedStudies = study.related.map((slug) => getCaseStudy(slug)).filter((item): item is CaseStudy => Boolean(item));
+const projectSchema = {
+  "@type": "CreativeWork",
+  "@id": `${canonical}#case-study`,
+  name: study.name,
+  description: study.seoDescription,
+  url: canonical,
+  image: heroMedia ? new URL(heroMedia.src, site.url).toString() : new URL("/images/WorkDisplay.png", site.url).toString(),
+  creator: { "@id": `${site.url}#organization` },
+  genre: study.type,
+};
+---
+
+<SiteLayout
+  title={`${study.name} Case Study | ACC Solutions`}
+  description={study.seoDescription}
+  canonical={canonical}
+  ogImage={heroMedia?.src ?? "/images/WorkDisplay.png"}
+  ogImageAlt={heroMedia?.alt ?? "ACC Solutions selected work showcase"}
+  ogType="article"
+  structuredData={projectSchema}
+>
+  <article class:list={["case-study", `case-study-${study.visual}`]}>
+    <header class="case-hero">
+      <div class="container case-hero-grid">
+        <div class="case-hero-copy reveal">
+          <a class="case-back" href="/work"><span aria-hidden="true">&lt;-</span> All work</a>
+          <div class="case-meta">
+            <span>{study.type}</span>
+            <StatusBadge status={study.status} tone="purple" />
+          </div>
+          <h1>{study.name}</h1>
+          <p class="case-headline">{study.headline}</p>
+          <p class="case-summary">{study.summary}</p>
+          <div class="case-hero-actions">
+            {study.liveUrl && (
+              <a class="btn btn-primary" href={study.liveUrl} target="_blank" rel="noopener noreferrer">Visit live site</a>
+            )}
+            {study.repositoryUrl && (
+              <a class="btn btn-secondary" href={study.repositoryUrl} target="_blank" rel="noopener noreferrer">View public repository</a>
+            )}
+          </div>
+        </div>
+
+        <div class="case-hero-proof reveal">
+          {heroMedia ? (
+            <figure class="case-hero-media">
+              <img
+                src={heroMedia.src}
+                alt={heroMedia.alt}
+                width={heroMedia.width}
+                height={heroMedia.height}
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                style={heroMedia.position ? `object-position: ${heroMedia.position}` : undefined}
+              />
+              <figcaption>{heroMedia.caption}</figcaption>
+            </figure>
+          ) : study.architecture ? (
+            <SystemDiagram label={study.architecture.label} nodes={study.architecture.nodes} />
+          ) : null}
+        </div>
+      </div>
+    </header>
+
+    <section class="case-context" aria-labelledby="context-title">
+      <div class="container case-context-grid">
+        <div class="case-section-heading reveal">
+          <p>Project context</p>
+          <h2 id="context-title">What the system needed to make clear.</h2>
+        </div>
+        <p class="case-context-copy reveal">{study.context}</p>
+        <dl class="case-facts reveal">
+          <div><dt>Project</dt><dd>{study.category === "system" ? "ACC system" : "Client work"}</dd></div>
+          <div><dt>Discipline</dt><dd>{study.type}</dd></div>
+          <div><dt>Current state</dt><dd>{study.status}</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="case-problem" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="case-dual-grid">
+          <div class="case-narrative reveal">
+            <span>01 / Problem</span>
+            <h2 id="problem-title">The constraint before the interface.</h2>
+            {study.problem.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+          <div class="case-narrative case-narrative-accent reveal">
+            <span>02 / ACC approach</span>
+            <h2>Build around the actual requirement.</h2>
+            {study.approach.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-walkthrough" aria-labelledby="walkthrough-title">
+      <div class="container">
+        <div class="case-section-heading case-section-heading-wide reveal">
+          <p>Product walkthrough</p>
+          <h2 id="walkthrough-title">How the experience moves from need to useful action.</h2>
+        </div>
+        <ol class="walkthrough-list reveal-group">
+          {study.walkthrough.map((step, index) => (
+            <li class="reveal">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {study.architecture && (
+      <section class="case-architecture" aria-labelledby="architecture-title">
+        <div class="container architecture-grid">
+          <div class="case-section-heading reveal">
+            <p>System logic</p>
+            <h2 id="architecture-title">The structure behind the visible experience.</h2>
+          </div>
+          <div class="reveal">
+            <SystemDiagram label={study.architecture.label} nodes={study.architecture.nodes} />
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="case-technical" aria-labelledby="technical-title">
+      <div class="container technical-grid">
+        <div class="case-section-heading reveal">
+          <p>Technical depth</p>
+          <h2 id="technical-title">Engineering in service of the product.</h2>
+          <span>Technology supports the operating story. It does not replace it.</span>
+        </div>
+        <div class="technical-content reveal">
+          <ul class="technical-stack" aria-label={`${study.name} technology`}>
+            {study.technical.map((item) => <li>{item}</li>)}
+          </ul>
+          <ul class="technical-proof" aria-label={`${study.name} verified implementation evidence`}>
+            {study.proofPoints.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {study.media.length > 1 && (
+      <section class="case-gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="case-section-heading case-section-heading-wide reveal">
+            <p>Selected media</p>
+            <h2 id="gallery-title">Current product evidence.</h2>
+          </div>
+          <div class="case-gallery-grid reveal-group">
+            {study.media.slice(1).map((media) => (
+              <figure class="reveal">
+                <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" style={media.position ? `object-position: ${media.position}` : undefined} />
+                <figcaption>{media.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="case-purpose" aria-labelledby="purpose-title">
+      <div class="container case-purpose-grid">
+        <div class="case-section-heading reveal">
+          <p>Business purpose</p>
+          <h2 id="purpose-title">What this work is designed to enable.</h2>
+        </div>
+        <blockquote class="reveal">{study.businessPurpose}</blockquote>
+        <div class="case-capabilities reveal">
+          <span>Related ACC capabilities</span>
+          {study.relatedCapabilities.map((capability) => <a href="/solutions">{capability}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <aside class="related-work" aria-labelledby="related-title">
+      <div class="container">
+        <div class="related-heading">
+          <p>Continue exploring</p>
+          <h2 id="related-title">Related ACC work</h2>
+        </div>
+        <div class="related-grid">
+          {relatedStudies.map((related) => (
+            <a href={`/work/${related.slug}`}>
+              <span>{related.type}</span>
+              <strong>{related.name}</strong>
+              <small>View case study -&gt;</small>
+            </a>
+          ))}
+        </div>
+      </div>
+    </aside>
+
+    <section class="case-inquiry" aria-labelledby="case-inquiry-title">
+      <div class="container case-inquiry-inner reveal">
+        <p>Start with the business problem</p>
+        <h2 id="case-inquiry-title">What should technology make easier inside your business?</h2>
+        <a class="btn btn-primary" href="/#contact">Talk With ACC</a>
+      </div>
+    </section>
+  </article>
+</SiteLayout>

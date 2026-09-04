@@ -1,0 +1,54 @@
+---
+import StatusBadge from "@components/ui/StatusBadge.astro";
+import SystemDiagram from "@components/ui/SystemDiagram.astro";
+import type { CaseStudy } from "@data/caseStudies";
+
+interface Props {
+  study: CaseStudy;
+  priority?: "primary" | "standard";
+}
+
+const { study, priority = "standard" } = Astro.props;
+const media = study.media[0];
+---
+
+<article class:list={["work-project", `work-project-${study.visual}`, { "work-project-primary": priority === "primary" }, "reveal"]}>
+  <div class="work-project-media">
+    {media ? (
+      <img
+        src={media.src}
+        alt={media.alt}
+        width={media.width}
+        height={media.height}
+        loading={priority === "primary" ? "eager" : "lazy"}
+        decoding="async"
+        style={media.position ? `object-position: ${media.position}` : undefined}
+      />
+    ) : study.architecture ? (
+      <SystemDiagram label={study.architecture.label} nodes={study.architecture.nodes} compact />
+    ) : null}
+  </div>
+
+  <div class="work-project-copy">
+    <div class="work-project-meta">
+      <span>{study.type}</span>
+      <StatusBadge status={study.status} tone="purple" />
+    </div>
+    <h3>{study.name}</h3>
+    <p>{study.summary}</p>
+    <p class="work-project-purpose">{study.businessPurpose}</p>
+
+    <ul class="work-project-tech" aria-label={`${study.name} technology proof`}>
+      {study.technical.slice(0, priority === "primary" ? 6 : 4).map((item) => <li>{item}</li>)}
+    </ul>
+
+    <div class="work-project-actions">
+      <a class="text-action" href={`/work/${study.slug}`}>View {study.shortName} case study <span aria-hidden="true">-&gt;</span></a>
+      {study.liveUrl && (
+        <a class="text-action text-action-muted" href={study.liveUrl} target="_blank" rel="noopener noreferrer">
+          Visit live site <span aria-hidden="true">-&gt;</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

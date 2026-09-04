@@ -1,0 +1,110 @@
+---
+import SiteLayout from "@layouts/SiteLayout.astro";
+import PageHeader from "@components/ui/PageHeader.astro";
+import SystemDiagram from "@components/ui/SystemDiagram.astro";
+import { solutionCapabilities } from "@data/solutions";
+import { site } from "@data/site";
+import "@styles/pages.css";
+
+const canonical = new URL("/solutions", site.url).toString();
+const description =
+  "Explore how ACC Solutions approaches websites, custom software, operations systems, mobile applications, automation, integrations, and data systems around real business needs.";
+const pageSchema = {
+  "@type": "WebPage",
+  "@id": `${canonical}#webpage`,
+  url: canonical,
+  name: "Solutions | ACC Solutions",
+  description,
+  about: { "@id": `${site.url}#organization` },
+};
+---
+
+<SiteLayout
+  title="Solutions | ACC Solutions"
+  description={description}
+  canonical={canonical}
+  ogImage="/images/proof/crew-command-dashboard.png"
+  ogImageAlt="Crew Command operations software built by ACC Solutions"
+  structuredData={pageSchema}
+>
+  <PageHeader
+    eyebrow="Solutions"
+    title="Your business determines what we build."
+    copy="ACC starts with the goal, bottleneck, workflow, or customer experience that needs to improve. The technology decision comes after the business requirement is understood."
+    context="Software, websites, mobile products, data systems, and integrations are tools. The operating problem decides which ones belong."
+  />
+
+  <nav class="capability-index" aria-label="Solutions page index">
+    <div class="container capability-index-inner">
+      <p>Capability index</p>
+      <ol>
+        {solutionCapabilities.map((capability) => (
+          <li><a href={`#capability-${capability.number}`}>{capability.number} <span>{capability.title}</span></a></li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+
+  <section class="solutions-manifesto" aria-labelledby="solutions-manifesto-title">
+    <div class="container solutions-manifesto-grid">
+      <p class="page-eyebrow">A systems-studio approach</p>
+      <h2 id="solutions-manifesto-title">Choose the outcome first. Design the system second.</h2>
+      <p>
+        A lead-generation website, an internal platform, a native application, and a data pipeline
+        can all solve valuable problems. The right answer depends on where information, people,
+        customers, and decisions currently lose momentum.
+      </p>
+    </div>
+  </section>
+
+  <div class="capability-sections">
+    {solutionCapabilities.map((capability, index) => (
+      <section
+        class:list={["capability-section", { "capability-section-reverse": index % 2 === 1 }]}
+        id={`capability-${capability.number}`}
+        aria-labelledby={`capability-title-${capability.number}`}
+      >
+        <div class="container capability-layout">
+          <div class="capability-copy reveal">
+            <span class="capability-number">{capability.number}</span>
+            <p class="page-eyebrow">ACC capability</p>
+            <h2 id={`capability-title-${capability.number}`}>{capability.title}</h2>
+            <strong>{capability.statement}</strong>
+            <p>{capability.description}</p>
+            <ul>
+              {capability.capabilities.map((item) => <li>{item}</li>)}
+            </ul>
+            <a class="text-action" href={capability.proofHref}>{capability.proof} <span aria-hidden="true">-&gt;</span></a>
+          </div>
+
+          <div class:list={["capability-proof", { "capability-proof-mobile": capability.number === "04" }, "reveal"]}>
+            {capability.image ? (
+              <figure>
+                <img
+                  src={capability.image.src}
+                  alt={capability.image.alt}
+                  width={capability.image.width}
+                  height={capability.image.height}
+                  loading="lazy"
+                  decoding="async"
+                  style={capability.image.position ? `object-position: ${capability.image.position}` : undefined}
+                />
+              </figure>
+            ) : capability.flow ? (
+              <SystemDiagram label="Workflow integration" nodes={capability.flow} />
+            ) : null}
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="page-inquiry" aria-labelledby="solutions-inquiry-title">
+    <div class="container page-inquiry-grid reveal">
+      <p class="page-eyebrow">No predetermined package</p>
+      <h2 id="solutions-inquiry-title">Bring ACC the business problem, not a technical specification.</h2>
+      <p>We will help diagnose the constraint, map the opportunity, and determine what should be built.</p>
+      <a class="btn btn-primary" href="/#contact">Talk With ACC</a>
+    </div>
+  </section>
+</SiteLayout>

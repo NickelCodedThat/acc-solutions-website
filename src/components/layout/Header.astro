@@ -1,5 +1,19 @@
 ---
 import { navigation } from "@data/site";
+
+const pathname = Astro.url.pathname;
+
+function isCurrentNavigationItem(label: string) {
+  if (label === "Solutions") {
+    return pathname === "/solutions";
+  }
+
+  if (label === "Work") {
+    return pathname === "/work" || pathname.startsWith("/work/");
+  }
+
+  return false;
+}
 ---
 
 <header class="site-header">
@@ -18,11 +32,19 @@ import { navigation } from "@data/site";
 
     <div class="nav-panel" id="nav-menu">
       <ul class="nav-menu">
-        {navigation.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
-        ))}
+        {navigation.map((item) => {
+          const isCurrent = isCurrentNavigationItem(item.label);
+
+          return (
+            <li>
+              <a class:list={{ "is-current": isCurrent }} href={item.href} aria-current={isCurrent ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
       </ul>
-      <a class="nav-cta" href="#contact">Talk With ACC</a>
+      <a class="nav-cta" href="/#contact">Talk With ACC</a>
     </div>
   </nav>
 </header>

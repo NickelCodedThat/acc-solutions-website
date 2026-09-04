@@ -117,7 +117,7 @@ p {
 
 .btn-primary {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--bg);
 }
 
 .btn-primary:hover,
@@ -230,13 +230,15 @@ p {
 
 .nav-menu a:hover,
 .nav-menu a:focus-visible,
-.nav-menu a.is-active {
+.nav-menu a.is-active,
+.nav-menu a.is-current {
   color: var(--text);
 }
 
 .nav-menu a:hover::after,
 .nav-menu a:focus-visible::after,
-.nav-menu a.is-active::after {
+.nav-menu a.is-active::after,
+.nav-menu a.is-current::after {
   opacity: 1;
   transform: scaleX(1);
 }
@@ -249,7 +251,7 @@ p {
   border-radius: 999px;
   padding: 0 18px;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--bg);
   font-size: 0.88rem;
   font-weight: 800;
   transition: transform 180ms var(--ease-out-premium), background 180ms ease;

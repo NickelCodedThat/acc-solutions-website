@@ -10,6 +10,8 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  ogType?: "website" | "article";
+  structuredData?: Record<string, unknown> | readonly Record<string, unknown>[];
 }
 
 const {
@@ -18,9 +20,26 @@ const {
   canonical = site.url,
   ogImage = site.ogImage,
   ogImageAlt = site.ogImageAlt,
+  ogType = "website",
+  structuredData,
 } = Astro.props;
 
 const absoluteOgImage = new URL(ogImage, site.url).toString();
+const organizationSchema = {
+  "@type": "Organization",
+  "@id": `${site.url}#organization`,
+  name: site.name,
+  legalName: site.legalName,
+  url: site.url,
+  email: site.email,
+  telephone: "+1-332-281-1444",
+  description: site.description,
+};
+const pageSchemas = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [organizationSchema, ...pageSchemas],
+};
 ---
 
 <!doctype html>
@@ -32,28 +51,19 @@ const absoluteOgImage = new URL(ogImage, site.url).toString();
     <meta name="robots" content="index, follow" />
     <title>{title}</title>
     <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={site.ogDescription} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={absoluteOgImage} />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={site.ogDescription} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteOgImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: site.name,
-      legalName: site.legalName,
-      url: site.url,
-      email: site.email,
-      telephone: "+1-332-281-1444",
-      description: site.description,
-    })} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaGraph)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

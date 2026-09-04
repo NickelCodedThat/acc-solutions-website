@@ -1,0 +1,23 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  copy: string;
+  context?: string;
+}
+
+const { eyebrow, title, copy, context } = Astro.props;
+---
+
+<header class="page-header">
+  <div class="container page-header-grid">
+    <div class="page-header-main reveal">
+      <p class="page-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+    </div>
+    <div class="page-header-copy reveal">
+      <p>{copy}</p>
+      {context && <strong>{context}</strong>}
+    </div>
+  </div>
+</header>

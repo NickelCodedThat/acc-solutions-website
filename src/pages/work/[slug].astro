@@ -1,0 +1,19 @@
+---
+import CaseStudyView from "@components/work/CaseStudyView.astro";
+import { caseStudies, type CaseStudy } from "@data/caseStudies";
+
+export function getStaticPaths() {
+  return caseStudies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+---
+
+<CaseStudyView study={study} />
