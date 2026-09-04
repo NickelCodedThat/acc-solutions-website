@@ -1,0 +1,10 @@
+---
+interface Props {
+  status: string;
+  tone: "purple" | "yellow" | "blue" | "green";
+}
+
+const { status, tone } = Astro.props;
+---
+
+<span class={`status-badge status-${tone}`}>{status}</span>

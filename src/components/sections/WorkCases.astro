@@ -1,0 +1,49 @@
+---
+import { workCases } from "@data/work";
+import StatusBadge from "@components/ui/StatusBadge.astro";
+---
+
+<div class="case-grid reveal-group">
+  {workCases.map((project) => (
+    <article class:list={["work-case-card", "reveal", project.category === "systems" && "work-case-card-system"]}>
+      <div class="case-card-top">
+        <p>{project.type}</p>
+        <StatusBadge status={project.status} tone={project.statusTone} />
+      </div>
+      <h3>{project.name}</h3>
+      <dl>
+        <div>
+          <dt>Problem</dt>
+          <dd>{project.problem}</dd>
+        </div>
+        <div>
+          <dt>ACC Solution</dt>
+          <dd>{project.solution}</dd>
+        </div>
+        <div>
+          <dt>Business Purpose</dt>
+          <dd>{project.purpose}</dd>
+        </div>
+      </dl>
+      {project.href && (
+        <a class="btn btn-secondary live-work-link" href={project.href} target="_blank" rel="noopener noreferrer">
+          <span>{project.buttonText}</span>
+          <span aria-hidden="true">+</span>
+        </a>
+      )}
+    </article>
+  ))}
+</div>
+
+<div class="portfolio-note reveal">
+  <p>
+    Live Portfolio: These are active projects. Some continue to evolve as clients provide
+    additional content, photography, branding, and business information.
+  </p>
+  <div class="status-key" aria-label="Project status key">
+    <span><span class="status-dot status-green" aria-hidden="true"></span>Green - Live</span>
+    <span><span class="status-dot status-yellow" aria-hidden="true"></span>Yellow - Content Update in Progress</span>
+    <span><span class="status-dot status-blue" aria-hidden="true"></span>Blue - Recently Launched</span>
+    <span><span class="status-dot status-purple" aria-hidden="true"></span>Purple - Development Preview</span>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+:root {
+  --color-background: #0b0f14;
+  --color-surface: #111720;
+  --color-surface-light: #161e29;
+  --color-surface-deep: #0b0f14;
+  --color-glass: rgba(17, 23, 32, 0.72);
+  --color-glass-strong: rgba(22, 30, 41, 0.86);
+  --color-accent: #7c6cff;
+  --color-text: #f5f7fa;
+  --color-text-muted: #98a2b3;
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  --bg: var(--color-background);
+  --bg-elevated: var(--color-surface);
+  --bg-soft: var(--color-surface-light);
+  --surface: var(--color-glass);
+  --surface-strong: var(--color-glass-strong);
+  --text: var(--color-text);
+  --muted: var(--color-text-muted);
+  --faint: var(--color-text-muted);
+  --line: var(--color-border);
+  --accent: var(--color-accent);
+  --accent-rgb: 124, 108, 255;
+  --accent-soft: rgba(var(--accent-rgb), 0.14);
+  --accent-line: rgba(var(--accent-rgb), 0.34);
+
+  --font-body: "Inter", Arial, sans-serif;
+  --font-display: "Sora", "Inter", sans-serif;
+
+  --space-section: clamp(96px, 13vw, 172px);
+  --space-section-compact: clamp(76px, 10vw, 130px);
+  --space-container-inline: 40px;
+  --space-container-inline-mobile: 28px;
+  --max-width: 1180px;
+
+  --radius: 8px;
+  --shadow: 0 32px 90px rgba(0, 0, 0, 0.52);
+  --transition-fast: 180ms ease;
+  --transition-medium: 220ms ease;
+  --ease-out-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --hero-shift: 0px;
+}

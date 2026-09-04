@@ -1,0 +1,110 @@
+---
+import { site } from "@data/site";
+---
+
+<section class="section contact-section" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy reveal">
+      <p class="eyebrow">Inquiry</p>
+      <h2>Tell us what you want technology to improve.</h2>
+      <p>
+        You do not need to know whether the answer is a website, CRM, automation, software,
+        dashboard, portal, or integration. Explain the business problem. ACC will help map
+        the right solution.
+      </p>
+      <div class="contact-methods" aria-label="Direct contact options">
+        <div class="contact-method">
+          <span>Email</span>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        <div class="contact-method">
+          <span>Phone</span>
+          <a href={site.phoneHref}>{site.phoneDisplay}</a>
+        </div>
+        <div class="contact-method">
+          <span>Domain</span>
+          <a href={site.url}>{site.domain}</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="quote-form" aria-label="Business improvement inquiry form" novalidate>
+      <div class="form-header">
+        <span>Business Improvement Inquiry</span>
+        <p>Required fields are marked with *</p>
+      </div>
+
+      <div class="field two-column">
+        <label for="name">Name *</label>
+        <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+      </div>
+
+      <div class="field two-column">
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="business">Business Name *</label>
+        <input id="business" name="business" type="text" placeholder="Your business" autocomplete="organization" required />
+      </div>
+
+      <div class="field">
+        <label for="service">What are you trying to improve? *</label>
+        <select id="service" name="service" required>
+          <option value="">Select the closest fit</option>
+          <option value="Operations or workflow improvement">Operations or workflow improvement</option>
+          <option value="Website and digital presence">Website and digital presence</option>
+          <option value="Internal software or dashboard">Internal software or dashboard</option>
+          <option value="Lead capture or customer intake">Lead capture or customer intake</option>
+          <option value="Automation or integrations">Automation or integrations</option>
+          <option value="CRM or business-system setup">CRM or business-system setup</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="budget">Estimated Budget</label>
+        <select id="budget" name="budget">
+          <option value="Not selected">Select a range</option>
+          <option value="Under $1,000">Under $1,000</option>
+          <option value="$1,000 - $2,500">$1,000 - $2,500</option>
+          <option value="$2,500 - $5,000">$2,500 - $5,000</option>
+          <option value="$5,000+">$5,000+</option>
+          <option value="Need guidance">Need guidance</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="timeline">Ideal Timeline</label>
+        <select id="timeline" name="timeline">
+          <option value="Not selected">Select a timeline</option>
+          <option value="ASAP">ASAP</option>
+          <option value="2-4 weeks">2-4 weeks</option>
+          <option value="1-2 months">1-2 months</option>
+          <option value="Flexible">Flexible</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">What is happening in the business? *</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          placeholder="Tell us what your business does, what is currently not working, where time is being wasted, what systems you use, or what growth goal you are pursuing."
+          required
+        ></textarea>
+      </div>
+
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+      <button class="btn btn-primary" type="submit">
+        <span>Prepare Inquiry Email</span>
+        <span aria-hidden="true">+</span>
+      </button>
+
+      <p class="form-note">This opens your email app with the inquiry prepared for ACC Solutions.</p>
+    </form>
+  </div>
+</section>
