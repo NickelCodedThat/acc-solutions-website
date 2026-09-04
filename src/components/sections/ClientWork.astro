@@ -1,0 +1,42 @@
+---
+import { clientProjects } from "@data/work";
+---
+
+<section class="section client-work-section" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="client-work-intro reveal">
+      <div>
+        <h2 id="work-title">Client work built to make the business clearer.</h2>
+      </div>
+      <p>
+        These projects focus on the public side of the operation: service clarity, trust,
+        responsive experience, conversion paths, and a digital presence that matches the business.
+      </p>
+    </div>
+
+    <div class="client-gallery reveal-group">
+      {clientProjects.map((project, index) => (
+        <article class:list={["client-project", `client-project-${index + 1}`, "reveal"]}>
+          <div class="client-media">
+            <img
+              src={project.image.src}
+              alt={project.image.alt}
+              width={project.image.width}
+              height={project.image.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="client-project-copy">
+            <p>{project.type}</p>
+            <h3>{project.name}</h3>
+            <span>{project.summary}</span>
+            <a href={project.url} target="_blank" rel="noopener noreferrer">
+              View live site <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

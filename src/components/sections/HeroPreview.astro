@@ -1,65 +1,34 @@
 ---
-import { heroPreviewProjects } from "@data/work";
+import ProjectFrame from "@components/ui/ProjectFrame.astro";
 ---
 
-<aside class="hero-showcase reveal" aria-label="ACC Solutions live concept preview">
-  <div class="showcase-topline">
-    <span>Studio preview</span>
-    <span>Live concept</span>
-  </div>
-  <div class="showcase-window">
-    <div class="window-chrome" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="site-mockup project-preview" data-hero-preview aria-label="Featured ACC Solutions projects">
-      {heroPreviewProjects.map((project, index) => {
-        const Tag = project.href ? "a" : "article";
-        return (
-          <Tag
-            class:list={[
-              "preview-project",
-              project.href && "preview-project-link",
-              index === 0 && "is-active",
-            ]}
-            data-hero-slide
-            href={project.href}
-            target={project.href ? "_blank" : undefined}
-            rel={project.href ? "noopener noreferrer" : undefined}
-            aria-label={project.href ? `View ${project.name} live project` : undefined}
-          >
-            <div class="preview-image-wrap">
-              <img
-                src={project.image.src}
-                alt={project.image.alt}
-                width={project.image.width}
-                height={project.image.height}
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-            <div class="preview-copy">
-              <div>
-                <span class="preview-kicker">{project.kicker}</span>
-                <h3>{project.name}</h3>
-              </div>
-              <span class="preview-status">{project.status}</span>
-            </div>
-            {project.linkLabel && <span class="preview-link">{project.linkLabel}</span>}
-          </Tag>
-        );
-      })}
-    </div>
-  </div>
-  <div class="hero-proof">
+<div class="hero-proof reveal" data-hero-preview>
+  <div class="hero-proof-header">
     <div>
-      <strong>Solution-first</strong>
-      <span>The business problem defines the technology plan.</span>
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Current development proof</span>
     </div>
-    <div>
-      <strong>Systems-minded</strong>
-      <span>Websites, tools, workflows, and automation built to connect.</span>
-    </div>
+    <span>Crew Command / CCV2</span>
   </div>
-</aside>
+
+  <ProjectFrame
+    src="/images/proof/crew-command-shifts.png"
+    alt="Current Crew Command scheduling screen with property assignment, shift controls, and operational records"
+    width={1098}
+    height={900}
+    label="Owner operations / scheduling"
+    loading="eager"
+    priority="high"
+    class="hero-project-frame"
+  />
+
+  <div class="hero-proof-foot">
+    <p>Built around the operation</p>
+    <ul aria-label="Crew Command capabilities shown in the current build">
+      <li>Scheduling</li>
+      <li>Time</li>
+      <li>Properties</li>
+      <li>Work records</li>
+    </ul>
+  </div>
+</div>

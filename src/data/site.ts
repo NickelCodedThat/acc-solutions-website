@@ -8,12 +8,12 @@ export const site = {
   phoneHref: "tel:+13322811444",
   statement: "We build the digital systems businesses operate on.",
   description:
-    "ACC Solutions builds digital systems, websites, software, automation, and technology infrastructure that help businesses operate better.",
+    "ACC Solutions studies how businesses operate, identifies where technology can create value, and builds the software, websites, applications, automation, integrations, and data systems required.",
   ogDescription:
-    "ACC Solutions identifies where technology can improve a business, then designs and builds the websites, software, automation, and systems to make it happen.",
-  title: "ACC Solutions | Digital Systems for Growing Businesses",
-  ogImage: "/images/WorkDisplay.png",
-  ogImageAlt: "Composite showcase of ACC Solutions website and application work",
+    "ACC Solutions identifies where technology can improve a business, then designs and builds the systems required to move it forward.",
+  title: "ACC Solutions | Digital Product & Systems Studio",
+  ogImage: "/images/proof/crew-command-shifts.png",
+  ogImageAlt: "Crew Command operations software built by ACC Solutions",
 } as const;
 
 export const navigation = [

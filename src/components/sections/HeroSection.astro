@@ -1,0 +1,25 @@
+---
+import HeroPreview from "@components/sections/HeroPreview.astro";
+import { site } from "@data/site";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-field" aria-hidden="true"><span></span><span></span></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="hero-kicker reveal">Digital Product &amp; Systems Studio</p>
+      <h1 id="hero-title" class="reveal">Technology built around how your business actually works.</h1>
+      <p class="hero-text reveal">
+        ACC Solutions identifies where technology can improve growth, operations, customer
+        experience, visibility, or efficiency, then designs and builds the software, websites,
+        mobile applications, integrations, automation, and digital systems required to make it happen.
+      </p>
+      <p class="hero-statement reveal">{site.statement}</p>
+      <div class="hero-actions reveal" aria-label="Primary actions">
+        <a class="btn btn-primary" href="#contact">Talk With ACC</a>
+        <a class="btn btn-secondary" href="#solutions">See What We Build</a>
+      </div>
+    </div>
+    <HeroPreview />
+  </div>
+</section>

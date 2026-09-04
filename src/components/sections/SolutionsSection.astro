@@ -1,0 +1,32 @@
+---
+import { capabilities } from "@data/home";
+---
+
+<section class="section solutions-section" id="solutions" aria-labelledby="solutions-title">
+  <div class="container">
+    <div class="solutions-intro">
+      <div class="section-lead reveal">
+        <p class="section-label">What ACC builds</p>
+        <h2 id="solutions-title">Your business determines what we build.</h2>
+      </div>
+      <p class="solutions-thesis reveal">
+        ACC chooses the tool after the problem is understood. The right answer may be a focused
+        website, internal software, a mobile app, an integration, a data system, or a connected
+        combination of them.
+      </p>
+    </div>
+
+    <div class="capability-ledger reveal-group">
+      {capabilities.map((capability, index) => (
+        <article class="capability-row reveal">
+          <span class="capability-number">{String(index + 1).padStart(2, "0")}</span>
+          <div class="capability-title">
+            <h3>{capability.title}</h3>
+          </div>
+          <p class="capability-copy">{capability.copy}</p>
+          <p class="capability-examples">{capability.examples}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

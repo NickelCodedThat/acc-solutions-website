@@ -1,5 +1,7 @@
 export {};
 
+document.documentElement.classList.add("motion-ready");
+
 const header = document.querySelector<HTMLElement>(".site-header");
 const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
 const navPanel = document.querySelector<HTMLElement>(".nav-panel");
@@ -151,7 +153,7 @@ if (quoteForm && formStatus) {
     const firstInvalidField = validateQuoteForm();
 
     if (firstInvalidField) {
-      formStatus.textContent = "Please complete the required fields before preparing your quote email.";
+      formStatus.textContent = "Please complete the required fields before preparing your inquiry email.";
       formStatus.classList.add("is-error");
       firstInvalidField.focus();
       return;

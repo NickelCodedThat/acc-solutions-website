@@ -1,49 +1,126 @@
 ---
-import { workCases } from "@data/work";
+import ProjectFrame from "@components/ui/ProjectFrame.astro";
 import StatusBadge from "@components/ui/StatusBadge.astro";
+import { systems } from "@data/work";
+
+const [crewCommand, stormChaser, newSpot, sift] = systems;
 ---
 
-<div class="case-grid reveal-group">
-  {workCases.map((project) => (
-    <article class:list={["work-case-card", "reveal", project.category === "systems" && "work-case-card-system"]}>
-      <div class="case-card-top">
-        <p>{project.type}</p>
-        <StatusBadge status={project.status} tone={project.statusTone} />
+<section class="section systems-section" id="systems" aria-labelledby="systems-title">
+  <div class="container">
+    <div class="proof-intro reveal">
+      <h2 id="systems-title">Proof that ACC can build the technology behind the operation.</h2>
+      <p>
+        These projects show different sides of the same capability: understanding a complex
+        problem, defining the system, and implementing the product across interface, data, and infrastructure.
+      </p>
+    </div>
+
+    <article class="system-primary reveal">
+      <div class="system-primary-copy">
+        <div class="project-meta">
+          <span>{crewCommand.type}</span>
+          <StatusBadge status={crewCommand.state} tone="purple" />
+        </div>
+        <h3>{crewCommand.name}</h3>
+        <p class="system-summary">{crewCommand.summary}</p>
+        <div class="system-story">
+          <div>
+            <span>Problem</span>
+            <p>Operational work becomes scattered across texts, spreadsheets, paper, memory, and disconnected tools.</p>
+          </div>
+          <div>
+            <span>System</span>
+            <p>Crew Command centralizes the workflows people use to schedule, complete, record, and oversee daily work.</p>
+          </div>
+          <div>
+            <span>Purpose</span>
+            <p>{crewCommand.businessMeaning}</p>
+          </div>
+        </div>
+        <ul class="evidence-list" aria-label="Implemented Crew Command capabilities">
+          {crewCommand.evidence.map((item) => <li>{item}</li>)}
+        </ul>
       </div>
-      <h3>{project.name}</h3>
-      <dl>
-        <div>
-          <dt>Problem</dt>
-          <dd>{project.problem}</dd>
-        </div>
-        <div>
-          <dt>ACC Solution</dt>
-          <dd>{project.solution}</dd>
-        </div>
-        <div>
-          <dt>Business Purpose</dt>
-          <dd>{project.purpose}</dd>
-        </div>
-      </dl>
-      {project.href && (
-        <a class="btn btn-secondary live-work-link" href={project.href} target="_blank" rel="noopener noreferrer">
-          <span>{project.buttonText}</span>
-          <span aria-hidden="true">+</span>
-        </a>
+      {crewCommand.image && (
+        <ProjectFrame
+          {...crewCommand.image}
+          label="Owner command center"
+          class="system-primary-frame"
+        />
       )}
     </article>
-  ))}
-</div>
 
-<div class="portfolio-note reveal">
-  <p>
-    Live Portfolio: These are active projects. Some continue to evolve as clients provide
-    additional content, photography, branding, and business information.
-  </p>
-  <div class="status-key" aria-label="Project status key">
-    <span><span class="status-dot status-green" aria-hidden="true"></span>Green - Live</span>
-    <span><span class="status-dot status-yellow" aria-hidden="true"></span>Yellow - Content Update in Progress</span>
-    <span><span class="status-dot status-blue" aria-hidden="true"></span>Blue - Recently Launched</span>
-    <span><span class="status-dot status-purple" aria-hidden="true"></span>Purple - Development Preview</span>
+    <div class="systems-secondary">
+      <article class="system-secondary system-storm reveal">
+        <div class="system-secondary-copy">
+          <div class="project-meta">
+            <span>{stormChaser.type}</span>
+            <StatusBadge status={stormChaser.state} tone="purple" />
+          </div>
+          <h3>{stormChaser.name}</h3>
+          <p>{stormChaser.summary}</p>
+          <p class="business-meaning">{stormChaser.businessMeaning}</p>
+          <ul class="evidence-list compact" aria-label="Implemented Storm Chaser capabilities">
+            {stormChaser.evidence.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        {stormChaser.image && (
+          <ProjectFrame {...stormChaser.image} label="U.S. severe-weather center" />
+        )}
+      </article>
+
+      <article class="system-secondary system-data reveal">
+        <div class="system-secondary-copy">
+          <div class="project-meta">
+            <span>{newSpot.type}</span>
+            <StatusBadge status={newSpot.state} tone="purple" />
+          </div>
+          <h3>{newSpot.name}</h3>
+          <p>{newSpot.summary}</p>
+          <p class="business-meaning">{newSpot.businessMeaning}</p>
+        </div>
+        <div class="architecture-panel" role="img" aria-label="New Spot system flow from listing sources through ingestion, normalized records, geospatial storage, search, and alerts">
+          <p>Data system topology</p>
+          <div class="architecture-flow">
+            <span>Listing sources</span>
+            <span>Ingestion</span>
+            <span>Normalized records</span>
+            <span>PostGIS search</span>
+            <span>Saved searches + alerts</span>
+          </div>
+          <ul class="tech-line" aria-label="New Spot implementation evidence">
+            {newSpot.evidence.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </article>
+
+      <article class="system-secondary system-mobile reveal">
+        <div class="phone-proof">
+          {sift.image && (
+            <img
+              src={sift.image.src}
+              alt={sift.image.alt}
+              width={sift.image.width}
+              height={sift.image.height}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+        </div>
+        <div class="system-secondary-copy">
+          <div class="project-meta">
+            <span>{sift.type}</span>
+            <StatusBadge status={sift.state} tone="purple" />
+          </div>
+          <h3>{sift.name}</h3>
+          <p>{sift.summary}</p>
+          <p class="business-meaning">{sift.businessMeaning}</p>
+          <ul class="evidence-list compact" aria-label="Implemented Sift capabilities">
+            {sift.evidence.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
-</div>
+</section>

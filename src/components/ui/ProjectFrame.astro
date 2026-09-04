@@ -1,0 +1,41 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  label: string;
+  loading?: "eager" | "lazy";
+  priority?: "high" | "low" | "auto";
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  label,
+  loading = "lazy",
+  priority = "auto",
+  class: className = "",
+} = Astro.props;
+---
+
+<figure class:list={["project-frame", className]}>
+  <div class="frame-bar" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <p>{label}</p>
+  </div>
+  <div class="frame-media">
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={priority}
+      decoding="async"
+    />
+  </div>
+</figure>

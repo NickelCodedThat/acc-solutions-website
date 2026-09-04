@@ -1,0 +1,27 @@
+---
+import { frictionPoints } from "@data/home";
+---
+
+<section class="section friction-section" id="friction" aria-labelledby="friction-title">
+  <div class="container friction-layout">
+    <div class="section-lead reveal">
+      <h2 id="friction-title">Technology should remove friction, not create more of it.</h2>
+      <p>
+        ACC starts by finding the operational drag that people inside the business have learned
+        to work around. The pattern is often familiar long before the right system is obvious.
+      </p>
+    </div>
+
+    <ol class="friction-list reveal-group">
+      {frictionPoints.map((point, index) => (
+        <li class="reveal">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{point.title}</h3>
+            <p>{point.copy}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

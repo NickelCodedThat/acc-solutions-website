@@ -1,0 +1,25 @@
+---
+import { processSteps } from "@data/home";
+---
+
+<section class="section process-section" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="process-intro reveal">
+      <h2 id="process-title">The ACC process begins with diagnosis.</h2>
+      <p>
+        The process is designed to find the right system before committing the business to a tool,
+        platform, or build that does not address the real constraint.
+      </p>
+    </div>
+
+    <ol class="process-flow reveal-group">
+      {processSteps.map(([title, copy], index) => (
+        <li class="reveal">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{title}</h3>
+          <p>{copy}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
