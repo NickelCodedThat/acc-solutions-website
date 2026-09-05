@@ -1,4 +1,4 @@
-import type { InquiryInput } from "./schema";
+import type { InquiryInput } from "./schema.js";
 
 const MIN_FILL_TIME_MS = 1500;
 const MAX_CLOCK_SKEW_MS = 5 * 60 * 1000;

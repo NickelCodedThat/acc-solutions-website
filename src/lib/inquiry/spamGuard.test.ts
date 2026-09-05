@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { checkForSpamSignals } from "./spamGuard";
-import type { InquiryInput } from "./schema";
+import { checkForSpamSignals } from "./spamGuard.js";
+import type { InquiryInput } from "./schema.js";
 
 function baseInput(overrides: Partial<InquiryInput> = {}): InquiryInput {
   return {

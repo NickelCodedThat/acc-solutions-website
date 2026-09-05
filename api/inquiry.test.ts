@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import handler from "./inquiry";
+import handler from "./inquiry.js";
 
 function createMockReq(overrides: Partial<VercelRequest> = {}): VercelRequest {
   return {

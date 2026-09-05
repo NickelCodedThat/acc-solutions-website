@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
-import { handleInquirySubmission, type InquiryHandlerDeps } from "./handleInquiry";
-import type { NotificationAdapter } from "./notificationAdapter";
-import type { CrmAdapter } from "./crmAdapter";
-import type { RateLimiter } from "./rateLimiter";
+import { handleInquirySubmission, type InquiryHandlerDeps } from "./handleInquiry.js";
+import type { NotificationAdapter } from "./notificationAdapter.js";
+import type { CrmAdapter } from "./crmAdapter.js";
+import type { RateLimiter } from "./rateLimiter.js";
 
 function validPayload(overrides: Record<string, unknown> = {}) {
   return {

@@ -1,12 +1,12 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { handleInquirySubmission } from "../src/lib/inquiry/handleInquiry";
-import { InMemoryRateLimiter } from "../src/lib/inquiry/rateLimiter";
+import { handleInquirySubmission } from "../src/lib/inquiry/handleInquiry.js";
+import { InMemoryRateLimiter } from "../src/lib/inquiry/rateLimiter.js";
 import {
   ConsoleNotificationAdapter,
   NotConfiguredNotificationAdapter,
   ResendNotificationAdapter,
-} from "../src/lib/inquiry/notificationAdapter";
-import { NoopCrmAdapter } from "../src/lib/inquiry/crmAdapter";
+} from "../src/lib/inquiry/notificationAdapter.js";
+import { NoopCrmAdapter } from "../src/lib/inquiry/crmAdapter.js";
 
 const MAX_CONTENT_LENGTH_BYTES = 20_000;
 

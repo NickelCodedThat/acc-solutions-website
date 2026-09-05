@@ -1,8 +1,8 @@
-import { parseInquiryPayload, type InquiryFieldErrors } from "./schema";
-import { checkForSpamSignals } from "./spamGuard";
-import type { NotificationAdapter } from "./notificationAdapter";
-import type { CrmAdapter } from "./crmAdapter";
-import type { RateLimiter } from "./rateLimiter";
+import { parseInquiryPayload, type InquiryFieldErrors } from "./schema.js";
+import { checkForSpamSignals } from "./spamGuard.js";
+import type { NotificationAdapter } from "./notificationAdapter.js";
+import type { CrmAdapter } from "./crmAdapter.js";
+import type { RateLimiter } from "./rateLimiter.js";
 
 const GENERIC_VALIDATION_ERROR = "Please check the highlighted fields and try again.";
 

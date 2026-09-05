@@ -1,4 +1,4 @@
-import type { InquiryInput } from "./schema";
+import type { InquiryInput } from "./schema.js";
 
 export interface CrmAdapter {
   /** Best-effort CRM handoff. Must never throw — return ok:false on failure. */

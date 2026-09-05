@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseInquiryPayload } from "./schema";
+import { parseInquiryPayload } from "./schema.js";
 
 function validPayload(overrides: Record<string, unknown> = {}) {
   return {

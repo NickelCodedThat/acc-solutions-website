@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { InMemoryRateLimiter } from "./rateLimiter";
+import { InMemoryRateLimiter } from "./rateLimiter.js";
 
 describe("InMemoryRateLimiter", () => {
   it("allows requests under the limit", () => {

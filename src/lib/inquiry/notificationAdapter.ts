@@ -1,4 +1,4 @@
-import type { InquiryInput } from "./schema";
+import type { InquiryInput } from "./schema.js";
 
 export interface NotificationAdapter {
   send(inquiry: InquiryInput): Promise<{ delivered: true; providerId: string }>;
