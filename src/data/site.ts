@@ -7,6 +7,7 @@ export const site = {
   phoneDisplay: "(332) 281-1444",
   phoneHref: "tel:+13322811444",
   founderPortfolioUrl: "https://personal-landing-page-swart-iota.vercel.app/",
+  githubUrl: "https://github.com/NickelCodedThat",
   statement: "We build the digital systems businesses operate on.",
   description:
     "ACC Solutions studies how businesses operate, identifies where technology can create value, and builds the software, websites, applications, automation, integrations, and data systems required.",

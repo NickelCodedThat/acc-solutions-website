@@ -1,5 +1,5 @@
 ---
-import { navigation } from "@data/site";
+import { navigation, site } from "@data/site";
 
 const pathname = Astro.url.pathname;
 
@@ -44,6 +44,26 @@ function isCurrentNavigationItem(label: string) {
           );
         })}
       </ul>
+      <div class="nav-external">
+        <a
+          class="nav-external-link"
+          href={site.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub profile (opens in a new tab)"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          class="nav-external-link"
+          href={site.founderPortfolioUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Personal portfolio (opens in a new tab)"
+        >
+          Portfolio <span aria-hidden="true">↗</span>
+        </a>
+      </div>
       <a class="nav-cta" href="/#contact">Talk With ACC</a>
     </div>
   </nav>
