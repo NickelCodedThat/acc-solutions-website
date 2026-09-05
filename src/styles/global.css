@@ -532,8 +532,27 @@ p {
   color: #ffb4b4;
 }
 
+.form-status.is-success {
+  color: #9be8b8;
+}
+
 .contact-form > .btn {
   width: max-content;
+}
+
+.contact-form > .btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hp-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .site-footer {

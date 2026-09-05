@@ -95,14 +95,19 @@ import { site } from "@data/site";
         ></textarea>
       </div>
 
+      <div class="field hp-field" aria-hidden="true">
+        <label for="website">Website</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 
       <button class="btn btn-primary" type="submit">
-        <span>Prepare Inquiry Email</span>
+        <span data-btn-label>Send Inquiry</span>
         <span aria-hidden="true">+</span>
       </button>
 
-      <p class="form-note">This opens your email app with the inquiry prepared for ACC Solutions.</p>
+      <p class="form-note">ACC replies directly to the email address above, usually within one business day.</p>
     </form>
   </div>
 </section>

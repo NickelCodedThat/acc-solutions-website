@@ -127,41 +127,122 @@ function validateQuoteForm() {
   return firstInvalidField;
 }
 
-function buildQuoteEmail() {
-  const subject = `ACC Solutions Inquiry - ${getFieldValue("business") || "Business Improvement Project"}`;
-  const bodyLines = [
-    "New business improvement inquiry from accsolutions.dev",
-    "",
-    `Name: ${getFieldValue("name")}`,
-    `Email: ${getFieldValue("email")}`,
-    `Business: ${getFieldValue("business")}`,
-    `Primary Need: ${getFieldValue("service")}`,
-    `Estimated Budget: ${getFieldValue("budget") || "Not selected"}`,
-    `Ideal Timeline: ${getFieldValue("timeline") || "Not selected"}`,
-    "",
-    "Business Context:",
-    getFieldValue("message"),
-  ];
+const INQUIRY_API_URL = import.meta.env.PUBLIC_INQUIRY_API_URL || "/api/inquiry";
+const formStartedAt = Date.now();
+const submitButton = quoteForm?.querySelector<HTMLButtonElement>("button[type='submit']") ?? null;
+const submitButtonLabel = submitButton?.querySelector<HTMLElement>("[data-btn-label]") ?? null;
+let isSubmitting = false;
 
-  return `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+function buildInquiryPayload() {
+  return {
+    name: getFieldValue("name"),
+    email: getFieldValue("email"),
+    business: getFieldValue("business"),
+    service: getFieldValue("service"),
+    budget: getFieldValue("budget") || "Not selected",
+    timeline: getFieldValue("timeline") || "Not selected",
+    message: getFieldValue("message"),
+    website: getFieldValue("website"),
+    startedAt: formStartedAt,
+  };
+}
+
+function setFormStatus(message: string, kind: "success" | "error" | "") {
+  if (!formStatus) {
+    return;
+  }
+
+  formStatus.textContent = message;
+  formStatus.classList.toggle("is-error", kind === "error");
+  formStatus.classList.toggle("is-success", kind === "success");
+}
+
+function setSubmitting(submitting: boolean) {
+  isSubmitting = submitting;
+
+  if (submitButton) {
+    submitButton.disabled = submitting;
+  }
+
+  if (submitButtonLabel) {
+    submitButtonLabel.textContent = submitting ? "Sending..." : "Send Inquiry";
+  }
 }
 
 if (quoteForm && formStatus) {
   quoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    if (isSubmitting) {
+      return;
+    }
+
     const firstInvalidField = validateQuoteForm();
 
     if (firstInvalidField) {
-      formStatus.textContent = "Please complete the required fields before preparing your inquiry email.";
-      formStatus.classList.add("is-error");
+      setFormStatus("Please complete the required fields before sending your inquiry.", "error");
       firstInvalidField.focus();
       return;
     }
 
-    formStatus.textContent = "Opening your email app with the inquiry prepared.";
-    formStatus.classList.remove("is-error");
-    window.location.href = buildQuoteEmail();
+    setSubmitting(true);
+    setFormStatus("Sending your inquiry to ACC...", "");
+
+    fetch(INQUIRY_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(buildInquiryPayload()),
+    })
+      .then(async (response) => {
+        const data = await response.json().catch(() => ({}));
+
+        if (response.ok && data?.ok) {
+          setFormStatus(
+            `Thanks — your inquiry was sent. ACC will follow up at the email you provided, usually within one business day.`,
+            "success"
+          );
+          quoteForm.reset();
+          window.dispatchEvent(
+            new CustomEvent("lead_submit_success", { detail: { source: "contact-form" } })
+          );
+          return;
+        }
+
+        if (response.status === 429) {
+          setFormStatus(
+            typeof data?.error === "string"
+              ? data.error
+              : "Too many requests. Please wait a moment and try again.",
+            "error"
+          );
+          return;
+        }
+
+        if (data?.fieldErrors && typeof data.fieldErrors === "object") {
+          Object.keys(data.fieldErrors).forEach((fieldName) => {
+            const field = getField(fieldName);
+            if (field) {
+              setFieldState(field, false);
+            }
+          });
+        }
+
+        setFormStatus(
+          typeof data?.error === "string"
+            ? data.error
+            : `Something went wrong. Please try again or email us directly at ${businessEmail}.`,
+          "error"
+        );
+      })
+      .catch(() => {
+        setFormStatus(
+          `We could not reach ACC's server. Please check your connection and try again, or email us directly at ${businessEmail}.`,
+          "error"
+        );
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   });
 
   quoteForm.addEventListener("input", (event) => {
@@ -172,8 +253,7 @@ if (quoteForm && formStatus) {
     setFieldState(event.target, event.target.checkValidity());
 
     if (formStatus.classList.contains("is-error")) {
-      formStatus.textContent = "";
-      formStatus.classList.remove("is-error");
+      setFormStatus("", "");
     }
   });
 
@@ -185,8 +265,7 @@ if (quoteForm && formStatus) {
     setFieldState(event.target, event.target.checkValidity());
 
     if (formStatus.classList.contains("is-error")) {
-      formStatus.textContent = "";
-      formStatus.classList.remove("is-error");
+      setFormStatus("", "");
     }
   });
 }
