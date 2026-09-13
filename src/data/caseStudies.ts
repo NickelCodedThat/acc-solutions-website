@@ -32,6 +32,10 @@ export interface CaseStudy {
     label: string;
     nodes: readonly string[];
   };
+  listingLiveLink?: {
+    href: string;
+    label: string;
+  };
   liveUrl?: string;
   repositoryUrl?: string;
   relatedCapabilities: readonly string[];
@@ -160,6 +164,10 @@ export const caseStudies: readonly CaseStudy[] = [
       nodes: ["Public providers", "Source adapters", "Normalized models", "Resilient loading", "Map + detail views", "Saved state"],
     },
     repositoryUrl: "https://github.com/NickelCodedThat/SCV2",
+    listingLiveLink: {
+      href: "https://scv-2-roan.vercel.app",
+      label: "Open live project",
+    },
     relatedCapabilities: ["Data / API Systems", "Custom Business Software"],
     related: ["new-spot", "crew-command"],
     seoDescription:

@@ -10,6 +10,7 @@ interface Props {
 
 const { study, priority = "standard" } = Astro.props;
 const media = study.media[0];
+const listingLiveLink = study.listingLiveLink ?? (study.liveUrl ? { href: study.liveUrl, label: "Visit live site" } : undefined);
 ---
 
 <article class:list={["work-project", `work-project-${study.visual}`, { "work-project-primary": priority === "primary" }, "reveal"]}>
@@ -42,11 +43,17 @@ const media = study.media[0];
       {study.technical.slice(0, priority === "primary" ? 6 : 4).map((item) => <li>{item}</li>)}
     </ul>
 
-    <div class="work-project-actions">
+    <div class:list={["work-project-actions", { "work-project-storm-actions": study.slug === "storm-chaser" }]}>
       <a class="text-action" href={`/work/${study.slug}`}>View {study.shortName} case study <span aria-hidden="true">-&gt;</span></a>
-      {study.liveUrl && (
-        <a class="text-action text-action-muted" href={study.liveUrl} target="_blank" rel="noopener noreferrer">
-          Visit live site <span aria-hidden="true">-&gt;</span>
+      {listingLiveLink && (
+        <a
+          class="text-action text-action-muted"
+          href={listingLiveLink.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={study.listingLiveLink ? `${listingLiveLink.label} (opens in a new tab)` : undefined}
+        >
+          {listingLiveLink.label} <span aria-hidden="true">{study.listingLiveLink ? "↗" : "->"}</span>
         </a>
       )}
     </div>

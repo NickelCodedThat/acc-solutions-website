@@ -2,18 +2,22 @@
 interface Props {
   eyebrow: string;
   title: string;
+  titleLines?: readonly string[];
   copy: string;
   context?: string;
+  className?: string;
 }
 
-const { eyebrow, title, copy, context } = Astro.props;
+const { eyebrow, title, titleLines, copy, context, className } = Astro.props;
 ---
 
-<header class="page-header">
+<header class:list={["page-header", className]}>
   <div class="container page-header-grid">
     <div class="page-header-main reveal">
       <p class="page-eyebrow">{eyebrow}</p>
-      <h1>{title}</h1>
+      <h1 aria-label={titleLines ? title : undefined}>
+        {titleLines ? titleLines.map((line) => <span aria-hidden="true">{line}</span>) : title}
+      </h1>
     </div>
     <div class="page-header-copy reveal">
       <p>{copy}</p>
