@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "@layouts/SiteLayout.astro";
+import CinematicEntry from "@components/layout/CinematicEntry.astro";
 import HeroSection from "@components/sections/HeroSection.astro";
 import FrictionSection from "@components/sections/FrictionSection.astro";
 import SolutionsSection from "@components/sections/SolutionsSection.astro";
@@ -12,6 +13,7 @@ import "@styles/home.css";
 ---
 
 <SiteLayout>
+  <CinematicEntry slot="cinematic-entry" />
   <HeroSection />
   <FrictionSection />
   <SolutionsSection />

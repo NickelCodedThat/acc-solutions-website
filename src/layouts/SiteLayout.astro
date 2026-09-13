@@ -70,8 +70,36 @@ const schemaGraph = {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (() => {
+        const storageKey = "acc-solutions-cinematic-entry-v1";
+
+        try {
+          const isHomePage = window.location.pathname === "/";
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const hasPlayed = window.sessionStorage.getItem(storageKey) === "seen";
+
+          if (isHomePage && reduceMotion) {
+            window.sessionStorage.setItem(storageKey, "seen");
+          } else if (isHomePage && !hasPlayed) {
+            window.sessionStorage.setItem(storageKey, "seen");
+            document.documentElement.classList.add("acc-entry-pending");
+
+            window.setTimeout(() => {
+              document.documentElement.classList.remove("acc-entry-pending", "acc-entry-active");
+              document.querySelectorAll("header[inert], main[inert], footer[inert]").forEach((region) => {
+                region.removeAttribute("inert");
+              });
+            }, 7000);
+          }
+        } catch {
+          document.documentElement.classList.remove("acc-entry-pending", "acc-entry-active");
+        }
+      })();
+    </script>
   </head>
   <body>
+    <slot name="cinematic-entry" />
     <Header />
     <main>
       <slot />
